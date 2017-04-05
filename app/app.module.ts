@@ -14,7 +14,8 @@ import {
     TOASTR_TOKEN, 
     Toastr, 
     CollapsibleWellComponent,
-    SimpleModalComponent
+    SimpleModalComponent,
+    ModalTriggerDirective
 } from './common/index'
 
 import {
@@ -27,7 +28,10 @@ import {
     EventListResolver,
     CreateSessionComponent,
     SessionListComponent,
-    DurationPipe
+    DurationPipe,
+    Upvote,
+    VoterService,
+    LocationValidator
 } from './events/index'
 
 import { appRoutes } from './routes'
@@ -54,7 +58,10 @@ declare let jQuery: Object
         SessionListComponent,
         CollapsibleWellComponent,
         DurationPipe,
-        SimpleModalComponent
+        SimpleModalComponent,
+        ModalTriggerDirective,
+        Upvote,
+        LocationValidator
     ],
     providers: [
         EventService,
@@ -63,6 +70,7 @@ declare let jQuery: Object
         EventRouteActivator,
         EventListResolver,
         AuthService,
+        VoterService,
         { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
     ],
     bootstrap: [EventsAppComponent]

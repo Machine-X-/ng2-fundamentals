@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms'
 export class EventService {
     getEvents():Observable<IEvent[]> {
         let subject = new Subject<IEvent[]>()
-        setTimeout(() => {subject.next(EVENTS); subject.complete(); }, 100)
+        setTimeout(() => {subject.next(EVENTS); subject.complete(); }, 25)
         return subject
     }
 
@@ -33,11 +33,17 @@ export class EventService {
         EVENTS.forEach(event => {
             var matchingSessions = event.sessions.filter(session =>
                 session.name.toLocaleLowerCase().indexOf(term) > -1)
-                matchingSessions = matchingSessions.map((session:any) => {
-                    session.eventId = event.id
-                    return session
-                })
-                results.concat(matchingSessions)
+
+            matchingSessions = matchingSessions.map((session:any) => {
+                session.eventId = event.id
+                return session
+            })
+            results = results.concat(matchingSessions)
+        
+            console.log("Results:")
+            results.forEach(session => {
+                console.log(session.name)
+            })
         })
 
         var emitter = new EventEmitter(true)

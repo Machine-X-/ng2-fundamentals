@@ -13,8 +13,8 @@ import { EventService, ISession } from '../events/index'
     `]
 })
 export class NavBarComponent {
-    searchTerm: string = ""
-    foundSessions: ISession[]
+    searchTerm:string = ""
+    foundSessions:ISession[]
 
     constructor(private auth:AuthService,
                 private eventService:EventService) {
@@ -25,6 +25,8 @@ export class NavBarComponent {
         this.eventService.searchSessions(searchTerm).subscribe(
             sessions => {
                 this.foundSessions = sessions
+                console.log("Search Term: " + this.searchTerm)
+                console.log(this.foundSessions)
             })
     }
 }
